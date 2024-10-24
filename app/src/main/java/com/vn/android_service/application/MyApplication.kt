@@ -27,6 +27,7 @@ class MyApplication : Application() {
             ).apply {
                 description = CHANNEL_DESCRIPTION
             }
+            channel.setSound(null, null)
 
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager?.createNotificationChannel(channel)

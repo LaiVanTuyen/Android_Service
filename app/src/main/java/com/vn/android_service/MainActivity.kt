@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.vn.android_service.dto.Song
 import com.vn.android_service.service.MyService
 
 class MainActivity : AppCompatActivity() {
@@ -37,10 +38,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onClickStartService() {
-        val dataIntent = edtDataIntent.text.toString().trim()
-        Intent(this, MyService::class.java).also {
-            it.putExtra("key_data_intent", dataIntent)
-            startService(it)
+        val song = Song(
+            "Title 1",
+            "Single 1",
+            R.drawable.download,
+            R.raw.file_music
+        )
+
+        val intent = Intent(this, MyService::class.java).apply {
+            putExtra("object_song", song)
         }
+
+        startService(intent)
     }
 }
